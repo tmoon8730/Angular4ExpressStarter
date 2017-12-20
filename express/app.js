@@ -5,7 +5,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var app = express();
-var productsRoute = require('./api/routes/productsRoute');
+var apiRouter = require('./api/api.route');
 
 /**
  * MongoDB Configuration
@@ -22,7 +22,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use('/products',productsRoute);
+app.use('/api',apiRouter);
 
 
 /**
