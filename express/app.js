@@ -3,8 +3,17 @@ var path = require('path');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
+var mongoose = require('mongoose');
 var app = express();
+var products = require('./api/routes/products');
+
+/**
+ * MongoDB Configuration
+ */
+mongoose.Promise = global.Promise;
+mongoose.connect('mongodb://localhost/product', {useMongoClient: true})
+  .then(() => console.log('[mongodb] Connection Succesful'))
+  .catch((err) => console.error(err));
 
 /**
  * Express Configuration
@@ -13,6 +22,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use('/products',products);
 
 
 /**
