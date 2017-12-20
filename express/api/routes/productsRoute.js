@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
-var Product = require('../models/Product.js');
+var Product = require('../models/productModel.js');
 
 /* GET ALL PRODUCTS */
 router.get('/', function(req, res, next) {
