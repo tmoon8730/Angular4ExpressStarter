@@ -3,18 +3,8 @@ var path = require('path');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var mongoose = require('mongoose');
-var Task = require('./api/models/todoModel');
 
 var app = express();
-
-/**
- * MongoDB RESTful API
- */
-mongoose.Promise = global.Promise;
-mongoose.createConnection('mongodb://localhost/tododb');
-var routes = require('./api/routes/todoRoutes');
-routes(app);
 
 /**
  * Express Configuration
@@ -23,6 +13,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
 
 /**
  * Serve Angular 4 frontend
