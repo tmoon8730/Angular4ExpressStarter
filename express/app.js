@@ -3,8 +3,18 @@ var path = require('path');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
+var Task = require('./api/models/todoModel');
 
 var app = express();
+
+/**
+ * MongoDB RESTful API
+ */
+mongoose.Promise = global.Promise;
+mongoose.createConnection('mongodb://localhost/tododb');
+var routes = require('./api/routes/todoRoutes');
+routes(app);
 
 /**
  * Express Configuration
