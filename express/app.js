@@ -19,11 +19,13 @@ mongoose.connect('mongodb://localhost/product', {useMongoClient: true})
  * Express Configuration
  */
 app.use(logger('dev'));
+// Allow for parsing json or urls out of request bodies
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+// Allow for storing and retrieving of cookies
 app.use(cookieParser());
+// Use /api to hit the api router which handles all backend api routes
 app.use('/api',apiRouter);
-
 
 /**
  * Serve Angular 4 frontend
@@ -35,6 +37,5 @@ app.use(express.static('../angular/dist'));
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../angular/dist/index.html'));
 });
-
 
 module.exports = app;
